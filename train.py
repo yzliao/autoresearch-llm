@@ -528,13 +528,13 @@ def get_muon_momentum(step):
     return (1 - frac) * 0.85 + frac * 0.97
 
 def get_weight_decay(progress):
-    # Decay WD to zero by end of training, but slower during warmdown
+    # Decay WD to zero by end of training (quadratic decay during warmdown)
     warmdown_start = 1.0 - WARMDOWN_RATIO
     if progress < warmdown_start:
         return WEIGHT_DECAY
     else:
         frac = (progress - warmdown_start) / WARMDOWN_RATIO
-        return WEIGHT_DECAY * (1 - frac)
+        return WEIGHT_DECAY * (1 - frac) ** 2
 
 # ---------------------------------------------------------------------------
 # Training loop
