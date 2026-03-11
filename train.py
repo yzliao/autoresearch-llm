@@ -534,7 +534,7 @@ def get_weight_decay(progress):
         return WEIGHT_DECAY
     else:
         frac = (progress - warmdown_start) / WARMDOWN_RATIO
-        return WEIGHT_DECAY * (1 - frac) ** 2
+        return WEIGHT_DECAY * (1 - frac) ** 3
 
 # ---------------------------------------------------------------------------
 # Training loop
